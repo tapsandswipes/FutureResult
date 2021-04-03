@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Chainable",
+        "repositoryURL": "https://github.com/tapsandswipes/Chainable.git",
+        "state": {
+          "branch": "main",
+          "revision": "245867e4500be05c3954cba771e987850b539410",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
