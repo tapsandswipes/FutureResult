@@ -38,26 +38,9 @@ public func compose<A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -
     return { a in g(f(a)) }
 }
 
-precedencegroup FunctionCompositionGroup {
-    associativity: left
-    higherThan: FunctionApplicationGroup
-}
-
-infix operator >>>: FunctionCompositionGroup
-
-/// Compose functions operator
-/// - Parameters:
-///   - f: first function to apply
-///   - g: function to apply to the resukt of the first function
-/// - Returns:a function that apply the compositon
-public func >>><A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C {
-    return compose(f, g)
-}
-
 precedencegroup FunctionApplicationGroup {
     associativity: left
 }
-
 
 infix operator |> : FunctionApplicationGroup
 
@@ -93,3 +76,21 @@ public func |> <A, B> (x: A, f: ((A) -> B)?) -> B? {
     }
     return f(x)
 }
+
+
+precedencegroup FunctionCompositionGroup {
+    associativity: left
+    higherThan: FunctionApplicationGroup
+}
+
+infix operator >>>: FunctionCompositionGroup
+
+/// Compose functions operator
+/// - Parameters:
+///   - f: first function to apply
+///   - g: function to apply to the resukt of the first function
+/// - Returns:a function that apply the compositon
+public func >>><A, B, C>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> C) -> (A) -> C {
+    return compose(f, g)
+}
+
