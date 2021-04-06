@@ -10,7 +10,7 @@ import Chainable
 
 public
 extension FutureResult where R: Chainable {
-    func apply(_ changes: @escaping (inout R) -> Void) -> Self {
+    func modify(_ changes: @escaping (inout R) -> Void) -> Self {
         map { $0.then(changes) }
     }
 }
