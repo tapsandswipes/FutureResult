@@ -9,10 +9,13 @@ import Foundation
 
 public
 extension FutureResult where R: Sequence {
-    func flatFlatMap<U>(_ f: @escaping (R.Element) -> FutureResult<U, E>) -> FutureResult<Array<Result<U, E>>, Never> {
+    /// Apply a function on every element of the sequence and return the concatenation of the resulting values
+    /// - Parameter f: function to apply
+    /// - Returns: A new FutureResult with an array of results
+    func flatFlatMap<U, UE>(_ f: @escaping (R.Element) -> FutureResult<U, UE>) -> FutureResult<Array<Result<U, UE>>, E> {
         flatMap { r in
-            FutureResult<[Result<U, E>], E> { cb in
-                let results: Atomic<[Result<U, E>]> = Atomic([])
+            FutureResult<[Result<U, UE>], E> { cb in
+                let results: Atomic<[Result<U, UE>]> = Atomic([])
                 let group = DispatchGroup()
                 r.forEach {
                     group.enter()
@@ -26,7 +29,7 @@ extension FutureResult where R: Sequence {
                     cb(.success(results.value))
                 }
             }
-        }.ignoreOnError()
+        }
     }
 }
 
