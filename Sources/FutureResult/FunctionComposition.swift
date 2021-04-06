@@ -29,7 +29,7 @@ public func cast<A>(_ a : Any) -> A? {
 }
 
 
-/// Compose two functions to one that receives the parameter of the firts and apply both provided function to
+/// Compose two functions to one that receives the parameter of the first and apply both provided function to
 /// - Parameters:
 ///   - f: first function to apply
 ///   - g: function to apply to the resukt of the first function
@@ -44,6 +44,11 @@ precedencegroup FunctionApplicationGroup {
 
 infix operator |> : FunctionApplicationGroup
 
+/// Apply the rhs function to the lhs value
+/// - Parameters:
+///   - x: a value of any kind
+///   - f: function for A to B
+/// - Returns: the result of applying the function f to the value x
 public func |> <A, B> (x: A, f: (A) -> B) -> B {
     return f(x)
 }

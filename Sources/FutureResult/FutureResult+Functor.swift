@@ -11,6 +11,9 @@ import Foundation
 public
 extension FutureResult {
     
+    /// Generate a new FutureResult that will apply the function to the .success case of the result
+    /// - Parameter f: function to apply to the
+    /// - Returns: A new FutureResult
     func map<U>(_ f: @escaping (R) -> U) -> FutureResult<U, E> {
         return FutureResult<U, E> { callback in
             self.run {
