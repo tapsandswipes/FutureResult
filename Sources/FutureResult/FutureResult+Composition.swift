@@ -67,3 +67,22 @@ func zip<A, B, C, E>(_ f1: FutureResult<A, E>, _ f2: FutureResult<B, E>, _ f3: F
         group.notify(queue: .main, execute: { callback(zip(f1r, f2r, f3r)) })
     }
 }
+
+public
+func zip<A, B, C, D, E>(_ f1: FutureResult<A, E>, _ f2: FutureResult<B, E>, _ f3: FutureResult<C, E>, _ f4: FutureResult<D, E>) -> FutureResult<(A,B,C,D), E> {
+    return FutureResult<(A,B,C,D), E> { callback in
+        var f1r: Result<A, E>!
+        var f2r: Result<B, E>!
+        var f3r: Result<C, E>!
+        var f4r: Result<D, E>!
+
+        let group = DispatchGroup()
+        
+        group.enter(); f1.run { f1r = $0; group.leave() }
+        group.enter(); f2.run { f2r = $0; group.leave() }
+        group.enter(); f3.run { f3r = $0; group.leave() }
+        group.enter(); f4.run { f4r = $0; group.leave() }
+
+        group.notify(queue: .main, execute: { callback(zip(f1r, f2r, f3r, f4r)) })
+    }
+}
