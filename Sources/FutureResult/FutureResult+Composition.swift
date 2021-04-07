@@ -39,6 +39,11 @@ func >=><A, B, C, E>(_ f: @escaping (A) -> FutureResult<B, E>, _ g:  @escaping (
     return { f($0).flatMap(g) }
 }
 
+/// Run 2 futures in parallel and return the tuple with the result of each future. Both futures must have the smae kind of error
+/// - Parameters:
+///   - f1: first future in the tuple
+///   - f2: second future in the tuple
+/// - Returns: A new future with the tuple
 public
 func zip<A, B, E>(_ f1: FutureResult<A, E>, _ f2: FutureResult<B, E>) -> FutureResult<(A,B), E> {
     return FutureResult<(A,B), E> { callback in
@@ -54,6 +59,12 @@ func zip<A, B, E>(_ f1: FutureResult<A, E>, _ f2: FutureResult<B, E>) -> FutureR
     }
 }
 
+/// Run 3 futures in parallel and return the tuple with the result of each future. All futures must have the smae kind of error
+/// - Parameters:
+///   - f1: first future in the tuple
+///   - f2: second future in the tuple
+///   - f3: third future in the tuple
+/// - Returns: A new future with the tuple
 public
 func zip<A, B, C, E>(_ f1: FutureResult<A, E>, _ f2: FutureResult<B, E>, _ f3: FutureResult<C, E>) -> FutureResult<(A,B,C), E> {
     return FutureResult<(A,B,C), E> { callback in
@@ -71,6 +82,13 @@ func zip<A, B, C, E>(_ f1: FutureResult<A, E>, _ f2: FutureResult<B, E>, _ f3: F
     }
 }
 
+/// Run 4 futures in parallel and return the tuple with the result of each future. All futures must have the smae kind of error
+/// - Parameters:
+///   - f1: first future in the tuple
+///   - f2: second future in the tuple
+///   - f3: third future in the tuple
+///   - f4: fourth future in the tuple
+/// - Returns: A new future with the tuple
 public
 func zip<A, B, C, D, E>(_ f1: FutureResult<A, E>, _ f2: FutureResult<B, E>, _ f3: FutureResult<C, E>, _ f4: FutureResult<D, E>) -> FutureResult<(A,B,C,D), E> {
     return FutureResult<(A,B,C,D), E> { callback in
