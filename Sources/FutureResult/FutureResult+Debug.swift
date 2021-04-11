@@ -11,24 +11,16 @@ public
 extension FutureResult {
     
     func print() -> Self {
-        .printValue()
-        .printError()
+        self.printValue()
+            .printError()
     }
     
     func printValue(prefix: String? = nil) -> Self {
-        #if DEBUG
         return map { v -> R in Swift.print("\(prefix ?? "RESULT"): ", v); return v }
-        #else
-        return self
-        #endif
     }
     
     func printError(prefix: String? = nil) -> Self {
-        #if DEBUG
         return mapError { e -> E in Swift.print("\(prefix ?? "ERROR"): ", e.localizedDescription); return e }
-        #else
-        return self
-        #endif
     }
     
     func log() -> Self {

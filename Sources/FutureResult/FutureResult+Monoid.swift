@@ -10,7 +10,10 @@ import Foundation
 
 public
 extension FutureResult {
-
+    
+    /// Return the FutureResult that is the result of applying the function to the .success case of self
+    /// - Parameter f: the function to apply
+    /// - Returns: the FutureResult returned by the function
     func flatMap<U>(_ f: @escaping (R) -> FutureResult<U, E>) -> FutureResult<U, E> {
         return FutureResult<U, E> { callback in
             self.run { r in
@@ -22,6 +25,9 @@ extension FutureResult {
         }
     }
     
+    /// Return the FutureResult that is the result of applying the function to the .failure case of self
+    /// - Parameter f: the function to apply
+    /// - Returns: the FutureResult returned by the function
     func flatMapError<U>(_ f: @escaping (E) -> FutureResult<R, U>) -> FutureResult<R, U> {
         return FutureResult<R, U> { callback in
             self.run { r in

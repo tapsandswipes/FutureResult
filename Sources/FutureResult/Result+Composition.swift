@@ -18,8 +18,8 @@ func >=><A, B, C, E>(_ f: @escaping (A) -> Result<B, E>, _ g:  @escaping (B) -> 
 public
 func zip<A, B, E>(_ r1: Result<A, E>, _ r2: Result<B, E>) -> Result<(A, B), E> {
     switch (r1,r2) {
-    case (_, .failure(let e)): return .failure(e)
     case (.failure(let e), _): return .failure(e)
+    case (_, .failure(let e)): return .failure(e)
     case (.success(let v1), .success(let v2)): return .success((v1, v2))
     }
 }
