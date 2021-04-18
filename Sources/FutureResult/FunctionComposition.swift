@@ -53,6 +53,18 @@ public func |> <A, B> (x: A, f: (A) -> B) -> B {
     return f(x)
 }
 
+public func |> <A, B> (x: A, f: (A) -> B?) -> B? {
+    return f(x)
+}
+
+public func |> <A, B> (x: A, f: ((A) -> B)?) -> B? {
+    return f?(x)
+}
+
+public func |> <A, B> (x: A, f: ((A) -> B?)?) -> B? {
+    return f?(x)
+}
+
 public func |> <A, B> (x: A?, f: (A) -> B) -> B? {
     return x.map(f)
 }
@@ -75,12 +87,6 @@ public func |> <A, B> (x: A?, f: ((A) -> B?)?) -> B? {
     return x.flatMap(f)
 }
 
-public func |> <A, B> (x: A, f: ((A) -> B)?) -> B? {
-    guard let f = f else {
-        return nil
-    }
-    return f(x)
-}
 
 
 precedencegroup FunctionCompositionGroup {
