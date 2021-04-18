@@ -11,21 +11,15 @@ final class FutureResultChainableTests: XCTestCase {
         }
         
         sut.run {
-            do {
-                let v = try XCTUnwrap($0.value)
-                XCTAssertEqual(v, r)
-            } catch {
-                XCTFail()
+            $0.check {
+                XCTAssertEqual($0, r)
             }
         }
         
         sut.modify { $0.name = "Changed" }.run {
-            do {
-                let v = try XCTUnwrap($0.value)
-                XCTAssertEqual(v.name, "Changed")
-                XCTAssertEqual(v.count, r.count)
-            } catch {
-                XCTFail()
+            $0.check {
+                XCTAssertEqual($0.name, "Changed")
+                XCTAssertEqual($0.count, r.count)
             }
         }
     }

@@ -36,4 +36,18 @@ extension FutureResult {
             }
         }
     }
+    
+}
+
+extension Result {
+    func check(file: StaticString = #filePath, line: UInt = #line, _ block: @escaping (Success) -> Void) {
+        do {
+            let v = try XCTUnwrap(self.value)
+            block(v)
+        } catch {
+            XCTFail(error.localizedDescription, file: file, line: line)
+        }
+
+    }
+
 }
