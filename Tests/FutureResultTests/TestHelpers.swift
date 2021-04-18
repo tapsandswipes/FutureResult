@@ -12,28 +12,21 @@ import XCTest
 
 
 extension FutureResult {
-    func assert(file: StaticString = #filePath, line: UInt = #line, _ f: @escaping (R) -> Bool, _ message: ((R) -> String)? = nil) -> Self {
-        return Self { callback in
-            self.run {
-                switch $0 {
-                case .success(let r):
-                    XCTAssertTrue(f(r), message?(r) ?? "", file: file, line: line)
-                case .failure(let error):
-                    XCTFail(error.localizedDescription, file: file, line: line)
-                }
-                callback($0)
-            }
+    func assertTrue(file: StaticString = #filePath, line: UInt = #line, _ f: @escaping (R) -> Bool, _ message: ((R) -> String)? = nil) -> Self {
+        map { r -> R in
+            XCTAssertTrue(f(r), message?(r) ?? "", file: file, line: line)
+            return r
+        }
+        .mapError { error -> E in
+            XCTFail(error.localizedDescription, file: file, line: line)
+            return error
         }
     }
     
     func assertNoError(file: StaticString = #filePath, line: UInt = #line) -> Self {
-        return Self { callback in
-            self.run {
-                if case .failure(let error) = $0 {
-                    XCTFail(error.localizedDescription, file: file, line: line)
-                }
-                callback($0)
-            }
+        mapError { error -> E in
+            XCTFail(error.localizedDescription, file: file, line: line)
+            return error
         }
     }
     
@@ -47,7 +40,5 @@ extension Result {
         } catch {
             XCTFail(error.localizedDescription, file: file, line: line)
         }
-
     }
-
 }
