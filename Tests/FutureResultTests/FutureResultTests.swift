@@ -2,13 +2,37 @@ import XCTest
 @testable import FutureResult
 
 final class FutureResultTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
+    func testFutureRunOK() {
+
+        let sut = FutureResult<Bool, Error> {
+            $0(.success(true))
+        }
+        
+        sut.run {
+            XCTAssertNotNil($0.value)
+            XCTAssert($0.value == .some(true))
+        }
+        
+    }
+
+    func testFutureRunKO() {
+        let sut = FutureResult<Bool, TestError> {
+            $0(.failure(TestError.error))
+        }
+        
+        sut.run {
+            XCTAssertNotNil($0.error)
+            XCTAssert($0.error == .some(TestError.error))
+        }
+        
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testExample", testFutureRunOK),
+        ("testFutureRunKO", testFutureRunKO),
     ]
+}
+
+enum TestError: Error, Equatable {
+    case error
 }
