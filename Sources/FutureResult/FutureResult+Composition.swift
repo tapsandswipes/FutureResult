@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FunctionComposition
+import ResultExtras
 
 public
 extension FutureResult where R: Sequence {
@@ -35,7 +37,7 @@ extension FutureResult where R: Sequence {
 
 
 public
-func >=><A, B, C, E>(_ f: @escaping (A) -> FutureResult<B, E>, _ g:  @escaping (B) -> FutureResult<C, E>) -> (A) -> FutureResult<C, E> {
+func >>><A, B, C, E>(_ f: @escaping (A) -> FutureResult<B, E>, _ g:  @escaping (B) -> FutureResult<C, E>) -> (A) -> FutureResult<C, E> {
     return { f($0).flatMap(g) }
 }
 

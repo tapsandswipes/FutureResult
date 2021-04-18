@@ -6,12 +6,11 @@
 //
 
 import Foundation
+import FunctionComposition
 
-
-infix operator >=> : FunctionCompositionGroup
 
 public
-func >=><A, B, C, E>(_ f: @escaping (A) -> Result<B, E>, _ g:  @escaping (B) -> Result<C, E>) -> (A) -> Result<C, E> {
+func >>><A, B, C, E>(_ f: @escaping (A) -> Result<B, E>, _ g:  @escaping (B) -> Result<C, E>) -> (A) -> Result<C, E> {
     return { a in f(a).flatMap(g) }
 }
 

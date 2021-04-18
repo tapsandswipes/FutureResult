@@ -1,5 +1,5 @@
 import XCTest
-@testable import FutureResult
+@testable import FunctionComposition
 
 
 final class FunctionCompositionTests: XCTestCase {
