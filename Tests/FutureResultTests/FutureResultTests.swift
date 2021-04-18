@@ -27,10 +27,6 @@ final class FutureResultTests: XCTestCase {
         
     }
 
-    static var allTests = [
-        ("testExample", testFutureRunOK),
-        ("testFutureRunKO", testFutureRunKO),
-    ]
 }
 
 enum TestError: Error, Equatable {

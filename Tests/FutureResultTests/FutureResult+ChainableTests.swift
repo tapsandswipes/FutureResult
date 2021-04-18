@@ -30,10 +30,6 @@ final class FutureResultChainableTests: XCTestCase {
         }
     }
     
-    static var allTests = [
-        ("testModify", testModify),
-    ]
-
 }
 
 struct ChainableStruct: Chainable, Hashable {

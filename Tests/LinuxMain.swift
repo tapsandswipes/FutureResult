@@ -3,7 +3,6 @@ import XCTest
 import FutureResultTests
 
 var tests = [XCTestCaseEntry]()
-tests += FunctionCompositionTests.allTests()
-tests += FutureResultTests.allTests()
-tests += FutureResultChainableTests.allTests()
+tests += FutureResultTests.__allTests()
+
 XCTMain(tests)

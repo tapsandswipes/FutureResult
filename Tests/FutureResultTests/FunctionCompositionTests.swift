@@ -199,20 +199,4 @@ final class FunctionCompositionTests: XCTestCase {
         XCTAssertNil(cofo)
     }
 
-    
-    static var allTests = [
-        ("testID", testID),
-        ("testCastOK", testCastOK),
-        ("testCastKO", testCastKO),
-        ("testCompose", testCompose),
-        ("testComposeOperator", testComposeOperator),
-        ("testFunctionApplicationXF", testFunctionApplicationXF),
-        ("testFunctionApplicationXOptionalF", testFunctionApplicationXOptionalF),
-        ("testFunctionApplicationXFOptional", testFunctionApplicationXFOptional),
-        ("testFunctionApplicationXFOptionalrOptional", testFunctionApplicationXFOptionalrOptional),
-        ("testFunctionApplicationXFrOptional", testFunctionApplicationXFrOptional),
-        ("testFunctionApplicationXOptionalFOptional", testFunctionApplicationXOptionalFOptional),
-        ("testFunctionApplicationXOptionalFOptionalrOptional", testFunctionApplicationXOptionalFOptionalrOptional),
-    ]
-
 }
