@@ -15,3 +15,15 @@ extension Result where Success == Void {
 }
 
 public func void<E>(_ e: E) -> Result<Void, E> { .void }
+
+public
+enum ResultError: Error {
+    case unwrapFailed
+}
+
+public
+extension Optional {
+    func asResult() -> Result<Wrapped, Error> {
+        Result(unwrapping: self, error: ResultError.unwrapFailed)
+    }
+}
