@@ -26,5 +26,10 @@ extension Result {
     func replaceError(with v: Success) -> Result<Success, Never> {
         return self.flatMapError { _ in .success(v) }
     }
+    
+    func replaceResult<U>(with obj: U) -> Result<U, Failure> {
+        map { _ in obj }
+    }
+
 }
 
