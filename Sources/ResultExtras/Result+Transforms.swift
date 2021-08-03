@@ -19,14 +19,6 @@ extension Result {
         mapError { $0 as Error }
     }
 
-    func replaceError(_ f: (Failure) -> Success ) -> Self {
-        return self.flatMapError { .success(f($0)) }
-    }
-
-    func replaceError(with v: Success) -> Self {
-        return self.flatMapError { _ in .success(v) }
-    }
-
     func replaceError(_ f: (Failure) -> Success ) -> Result<Success, Never> {
         return self.flatMapError { .success(f($0)) }
     }

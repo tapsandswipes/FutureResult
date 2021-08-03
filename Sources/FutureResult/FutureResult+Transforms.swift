@@ -22,21 +22,7 @@ extension FutureResult {
     func toError() -> FutureResult<R, Error> {
         mapError { $0 as Error }
     }
-    
-    /// Generate a new future that transform its error to a result
-    /// - Parameter f: the block to use to perform the transformation
-    /// - Returns: a new future properly configured
-    func replaceError(_ f: @escaping (E) -> R) -> Self {
-        mapError { .success(f($0)) }
-    }
-    
-    /// Generate a new future that transform its error to a fixed result
-    /// - Parameter result: the result to use
-    /// - Returns: a new future properly configured
-    func replaceError(with result: R) -> Self {
-        mapError { _ in .success(result) }
-    }
-    
+        
     /// Generate a new future that transform its error to a result
     /// - Parameter f: the block to use to perform the transformation
     /// - Returns: a new future properly configured
