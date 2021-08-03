@@ -27,3 +27,18 @@ extension Optional {
         Result(unwrapping: self, error: ResultError.unwrapFailed)
     }
 }
+
+public
+extension Result where Success == Optional<Any> {
+    /// Unwrap an optional result to its wrapped value
+    /// - Returns: a new result with the urwrapped value
+    func unwrap<U>() -> Result<U, Error> {
+        self.toError().flatMap {
+            if case .some(let c) = $0, let u = c as? U {
+                return .success(u)
+            } else {
+                return .failure(ResultError.unwrapFailed)
+            }
+        }
+    }
+}
