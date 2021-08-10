@@ -39,3 +39,21 @@ extension FutureResult where R == Optional<Any> {
         }
     }
 }
+
+
+// We don't use the standard iOS ProgressReporting protocol because it's only defined for NSObject subclasses
+public
+protocol ProgressReporter {
+    var progress: Progress { get }
+}
+
+public
+struct FutureResultProgress<R, E: Error>: ProgressReporter {
+    public let future: FutureResult<R, E>
+    public let progress: Progress
+
+    public init(future: FutureResult<R, E>, progress: Progress) {
+        self.future = future
+        self.progress = progress
+    }
+}
