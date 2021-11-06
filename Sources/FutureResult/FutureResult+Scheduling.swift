@@ -86,8 +86,7 @@ extension FutureResult {
     func sleep(_ interval: TimeInterval) -> Self {
         return Self { callback in
             self.run { r in
-                waitQueue.async {
-                    Thread.sleep(forTimeInterval: interval)
+                waitQueue.asyncAfter(deadline: .now() + interval) {
                     callback(r)
                 }
             }
