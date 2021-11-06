@@ -38,7 +38,7 @@ extension FutureResult {
     }
     
     /// Generat a new future that will never call the calback on errors
-    /// Be careful wiht this method as can lead to a future that never ends
+    /// Be careful whit this method as can lead to a future that never ends
     /// - Returns: a new future properly configured
     func ignoreOnError() -> FutureResult<R, Never> {
         FutureResult<R, Never> { callback in

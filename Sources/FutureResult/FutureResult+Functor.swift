@@ -14,17 +14,6 @@ extension FutureResult {
     /// Generate a new FutureResult that will apply the function to the .success case of the result
     /// - Parameter f: function to apply to the
     /// - Returns: A new FutureResult
-    func map<U>(_ f: @escaping (R) -> U) -> FutureResult<U, E> {
-        return FutureResult<U, E> { callback in
-            self.run {
-                callback($0.map(f))
-            }
-        }
-    }
-    
-    /// Generate a new FutureResult that will apply the function to the .success case of the result
-    /// - Parameter f: function to apply to the
-    /// - Returns: A new FutureResult
     func map<U>(_ f: @escaping (R) -> Result<U, E>) -> FutureResult<U, E> {
         return FutureResult<U, E> { callback in
             self.run {
@@ -33,13 +22,13 @@ extension FutureResult {
         }
     }
     
-    /// Generate a new FutureResult that will apply the function to the .failure case of the result
+    /// Generate a new FutureResult that will apply the function to the .success case of the result
     /// - Parameter f: function to apply to the
     /// - Returns: A new FutureResult
-    func mapError<U>(_ f: @escaping (E) -> U) -> FutureResult<R, U> {
-        return FutureResult<R, U> { callback in
+    func map<U>(_ f: @escaping (R) -> U) -> FutureResult<U, E> {
+        return FutureResult<U, E> { callback in
             self.run {
-                callback($0.mapError(f))
+                callback($0.map(f))
             }
         }
     }
@@ -54,5 +43,16 @@ extension FutureResult {
             }
         }
     }
-    
+
+    /// Generate a new FutureResult that will apply the function to the .failure case of the result
+    /// - Parameter f: function to apply to the
+    /// - Returns: A new FutureResult
+    func mapError<U>(_ f: @escaping (E) -> U) -> FutureResult<R, U> {
+        return FutureResult<R, U> { callback in
+            self.run {
+                callback($0.mapError(f))
+            }
+        }
+    }
+        
 }

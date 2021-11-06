@@ -15,10 +15,10 @@ extension FutureResult {
     /// - Parameter queue: the queue whwere the calback should be called
     /// - Returns: a new future properly configured
     func deliver(on queue: DispatchQueue) -> Self {
-        Self { callback in
+        Self { cb in
             self.run { r in
                 queue.async {
-                    callback(r)
+                    cb(r)
                 }
             }
         }
