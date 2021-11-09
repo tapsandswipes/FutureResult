@@ -12,6 +12,10 @@ import Foundation
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public
 extension FutureResult {
+    func run() async -> Result<R, E> {
+        await withCheckedContinuation { self.run($0.resume) }
+    }
+    
     func run() async throws -> R {
         try await withCheckedThrowingContinuation { self.run($0.resume) }
     }
