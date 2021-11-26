@@ -40,6 +40,7 @@ extension FutureResult where R == Optional<Any> {
     }
 }
 
+public
 extension FutureResult {
     /// Use the result in a block and continue chain
     /// - Parameter block: the block that will use the result
