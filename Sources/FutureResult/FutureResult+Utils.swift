@@ -40,6 +40,17 @@ extension FutureResult where R == Optional<Any> {
     }
 }
 
+extension FutureResult {
+    /// Use the result in a block and continue chain
+    /// - Parameter block: the block that will use the result
+    /// - Returns: a new future properly configured
+    func use(_ block: @escaping (R) -> Void) -> Self {
+        map { r -> R in
+            block(r)
+            return r
+        }
+    }
+}
 
 // We don't use the standard iOS ProgressReporting protocol because it's only defined for NSObject subclasses
 public
