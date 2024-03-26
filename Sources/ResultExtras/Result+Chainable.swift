@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Antonio Cabezuelo Vivo on 3/4/21.
-//
-
 import Foundation
 import Chainable
 

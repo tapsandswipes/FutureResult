@@ -1,11 +1,3 @@
-//
-//  Result+Extensions.swift
-//  Planout
-//
-//  Created by Antonio Cabezuelo Vivo on 23/03/2020.
-//  Copyright © 2020 Planout Fields SL. All rights reserved.
-//
-
 import Foundation
 
 

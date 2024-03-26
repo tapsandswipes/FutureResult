@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Antonio Cabezuelo Vivo on 5/11/21.
-//
-
 import Foundation
 
 #if swift(>=5.5.2)

@@ -1,11 +1,3 @@
-//
-//  Atomic.swift
-//  Planout
-//
-//  Created by Antonio Cabezuelo Vivo on 25/06/2020.
-//  Copyright © 2020 Planout Fields SL. All rights reserved.
-//
-
 import Foundation
 
 final class Atomic<A> {

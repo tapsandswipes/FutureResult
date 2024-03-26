@@ -1,11 +1,3 @@
-//
-//  TestHelpers.swift
-//  PlanoutTests
-//
-//  Created by Antonio Cabezuelo Vivo on 30/06/2020.
-//  Copyright © 2020 Planout Fields SL. All rights reserved.
-//
-
 import Foundation
 import XCTest
 @testable import FutureResult

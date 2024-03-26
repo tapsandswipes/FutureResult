@@ -1,10 +1,3 @@
-//
-//  FutureResultAsync.swift
-//  
-//
-//  Created by Antonio Cabezuelo Vivo on 9/11/21.
-//
-
 import XCTest
 @testable import FutureResult
 
